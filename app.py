@@ -20,14 +20,10 @@ st.set_page_config(page_title="Expert IFRS 9", page_icon="⚖️", layout="cente
 st.title("⚖️ IFRS 9 Specialist Bot")
 st.markdown("Assistente inteligente para consulta da norma técnica IFRS 9.")
 
-# --- Barra Lateral (Configurações) ---
-with st.sidebar:
-    st.header("⚙️ Configuração")
-    # O usuário insere a chave do Gemini aqui
-    api_key = st.text_input("Insira sua Google API Key", type="password")
-    st.divider()
-    st.markdown("### Sobre o Projeto")
-    st.info("RAG (Retrieval-Augmented Generation) integrando Databricks, FAISS e Gemini 1.5 Flash.")
+api_key = st.secrets.get("GOOGLE_API_KEY") or st.sidebar.text_input("Insira sua Google API Key (caso não configurada)", type="password")
+
+if api_key:
+    os.environ["GOOGLE_API_KEY"] = api_key
 
 # --- Lógica de Carregamento (Cache para performance) ---
 @st.cache_resource
@@ -80,4 +76,5 @@ if api_key:
                 st.write(response)
                 st.session_state.messages.append({"role": "assistant", "content": response})
 else:
+
     st.warning("⚠️ Adicione sua Google API Key na barra lateral para começar.")
