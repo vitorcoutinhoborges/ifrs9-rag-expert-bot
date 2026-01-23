@@ -20,7 +20,7 @@ st.set_page_config(page_title="Expert IFRS 9", page_icon="⚖️", layout="cente
 st.title("⚖️ IFRS 9 Specialist Bot")
 st.markdown("Assistente inteligente para consulta da norma técnica IFRS 9.")
 
-api_key = st.secrets.get("GOOGLE_API_KEY") or st.sidebar.text_input("Insira sua Google API Key (caso não configurada)", type="password")
+api_key = st.secrets.get("GOOGLE_API_KEY") 
 
 if api_key:
     os.environ["GOOGLE_API_KEY"] = api_key
@@ -78,3 +78,4 @@ if api_key:
 else:
 
     st.warning("⚠️ Adicione sua Google API Key na barra lateral para começar.")
+
