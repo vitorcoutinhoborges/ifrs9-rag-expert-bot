@@ -40,7 +40,7 @@ if api_key:
     retriever = init_rag()
     
     # Prompt de Especialista
-    template = """Você é um Consultor Especialista em IFRS 9. Use o contexto para responder.
+    template = """Você é um Consultor Especialista em IFRS 9. Use o contexto para responder Seja breve em sua resposta e traga sempre a fonte.
     Contexto: {context}
     Pergunta: {question}
     Resposta Técnica (em Português):"""
